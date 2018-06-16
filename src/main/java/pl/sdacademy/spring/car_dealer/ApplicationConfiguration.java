@@ -1,7 +1,11 @@
 package pl.sdacademy.spring.car_dealer;
 
+import org.springframework.beans.factory.annotation.Autowire;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import pl.sdacademy.spring.car_dealer.controller.CarDataController;
 import pl.sdacademy.spring.car_dealer.controller.SellingController;
 import pl.sdacademy.spring.car_dealer.repository.*;
@@ -11,21 +15,32 @@ import pl.sdacademy.spring.car_dealer.service.DefaultSellingService;
 import pl.sdacademy.spring.car_dealer.service.SellingService;
 
 @Configuration
+@PropertySource("classpath:application.properties")
 public class ApplicationConfiguration {
 
     @Bean
-    HardDriveVehicleRepository hardDriveVehicleRepository() {
-        return new HardDriveVehicleRepository("vehicles.ser");
+    static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
     }
 
     @Bean
-    HardDriveCustomerRepository hardDriveCustomerRepository() {
-        return new HardDriveCustomerRepository("customers.ser");
+    HardDriveVehicleRepository hardDriveVehicleRepository(
+            @Value("${repository.vehicle.hardDriveLocation}") String vehicleRepositoryLocation) {
+        return new HardDriveVehicleRepository(vehicleRepositoryLocation);
     }
 
     @Bean
-    HardDrivePurchaseRepository hardDrivePurchaseRepository() {
-        return new HardDrivePurchaseRepository("purchases.ser");
+    HardDriveCustomerRepository hardDriveCustomerRepository(
+            @Value("${repository.customer.hardDriveLocation}")
+            String customerRepositoryLocation) {
+        return new HardDriveCustomerRepository(customerRepositoryLocation);
+    }
+
+    @Bean
+    HardDrivePurchaseRepository hardDrivePurchaseRepository(
+            @Value("${repository.purchase.hardDriveLocation}")
+            String purchaseRepositoryLocation) {
+        return new HardDrivePurchaseRepository(purchaseRepositoryLocation);
     }
 
     @Bean
@@ -54,13 +69,9 @@ public class ApplicationConfiguration {
         return new SellingController(sellingService);
     }
 
-    @Bean
-    Application application(
-            CarDataController carDataController,
-            SellingController sellingController) {
-        Application application = new Application();
-        application.setCarDataController(carDataController);
-        application.setSellingController(sellingController);
-        return application;
+    @Bean(autowire = Autowire.BY_TYPE)
+    Application application() {
+        return new Application();
     }
+
 }
