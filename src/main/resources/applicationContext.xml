@@ -1,45 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-	   http://www.springframework.org/schema/beans/spring-beans.xsd">
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config/>
+    <context:component-scan base-package="pl.sdacademy.spring.car_dealer"/>
 
-    <!-- repositories -->
-    <bean name="hardDriveVehicleRepository"
-          class="pl.sdacademy.spring.car_dealer.repository.HardDriveVehicleRepository">
-        <constructor-arg index="0" value="${repository.vehicle.hardDriveLocation}"/>
-    </bean>
-    <bean name="hardDriveCustomerRepository"
-          class="pl.sdacademy.spring.car_dealer.repository.HardDriveCustomerRepository">
-        <constructor-arg index="0" value="${repository.customer.hardDriveLocation}"/>
-    </bean>
-    <bean name="hardDrivePurchaseRepository"
-          class="pl.sdacademy.spring.car_dealer.repository.HardDrivePurchaseRepository">
-        <constructor-arg index="0" value="${repository.purchase.hardDriveLocation}"/>
-    </bean>
-
-    <!-- services -->
-    <bean name="defaultCarDataService"
-          class="pl.sdacademy.spring.car_dealer.service.DefaultCarDataService"
-          autowire="constructor"/>
-    <bean name="defaultSellingService"
-          class="pl.sdacademy.spring.car_dealer.service.DefaultSellingService"
-          autowire="constructor"/>
-
-    <!-- controllers -->
-    <bean name="carDataController"
-          class="pl.sdacademy.spring.car_dealer.controller.CarDataController"
-          autowire="constructor"/>
-    <bean name="sellingController"
-          class="pl.sdacademy.spring.car_dealer.controller.SellingController"
-          autowire="constructor"/>
-
-    <bean name="application"
-          class="pl.sdacademy.spring.car_dealer.Application"
-          autowire="byType"/>
-
-    <bean
-            class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="application.properties" />
-    </bean>
 </beans>
