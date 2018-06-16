@@ -1,6 +1,5 @@
 package pl.sdacademy.spring.car_dealer.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import pl.sdacademy.spring.car_dealer.model.Customer;
 import pl.sdacademy.spring.car_dealer.service.SellingService;

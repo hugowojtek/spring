@@ -1,6 +1,5 @@
 package pl.sdacademy.spring.car_dealer.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sdacademy.spring.car_dealer.model.Vehicle;
 import pl.sdacademy.spring.car_dealer.repository.VehicleRepository;
