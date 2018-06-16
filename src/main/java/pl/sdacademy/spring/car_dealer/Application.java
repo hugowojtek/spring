@@ -1,5 +1,7 @@
 package pl.sdacademy.spring.car_dealer;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.sdacademy.spring.car_dealer.controller.CarDataController;
 import pl.sdacademy.spring.car_dealer.controller.SellingController;
 import pl.sdacademy.spring.car_dealer.repository.*;
@@ -10,18 +12,13 @@ import pl.sdacademy.spring.car_dealer.service.SellingService;
 
 import java.util.Scanner;
 
+@Component
 public class Application {
 
+    @Autowired
     private CarDataController carDataController;
+    @Autowired
     private SellingController sellingController;
-
-    public void setCarDataController(CarDataController carDataController) {
-        this.carDataController = carDataController;
-    }
-
-    public void setSellingController(SellingController sellingController) {
-        this.sellingController = sellingController;
-    }
 
     public void start() {
         Long choice = -1L;

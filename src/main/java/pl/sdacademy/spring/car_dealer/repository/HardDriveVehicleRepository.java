@@ -1,15 +1,20 @@
 package pl.sdacademy.spring.car_dealer.repository;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 import pl.sdacademy.spring.car_dealer.model.Vehicle;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Repository
 public class HardDriveVehicleRepository extends AbstractHardDriveRepository<Vehicle> implements VehicleRepository {
 
     private final String repositoryLocation;
 
-    public HardDriveVehicleRepository(String repositoryLocation) {
+    public HardDriveVehicleRepository(
+            @Value("${repository.vehicle.hardDriveLocation}")
+            String repositoryLocation) {
         this.repositoryLocation = repositoryLocation;
     }
 

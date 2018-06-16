@@ -1,11 +1,14 @@
 package pl.sdacademy.spring.car_dealer.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import pl.sdacademy.spring.car_dealer.model.Vehicle;
 import pl.sdacademy.spring.car_dealer.service.CarDataService;
 
 import java.util.Comparator;
 import java.util.List;
 
+@Controller
 public class CarDataController {
 
     private final CarDataService carDataService;
