@@ -15,7 +15,10 @@ public class DefaultSellingService implements SellingService {
     private final CustomerRepository customerRepository;
     private final PurchaseRepository purchaseRepository;
 
-    public DefaultSellingService(VehicleRepository vehicleRepository, CustomerRepository customerRepository, PurchaseRepository purchaseRepository) {
+    public DefaultSellingService(
+            VehicleRepository vehicleRepository,
+            CustomerRepository customerRepository,
+            PurchaseRepository purchaseRepository) {
         this.vehicleRepository = vehicleRepository;
         this.customerRepository = customerRepository;
         this.purchaseRepository = purchaseRepository;

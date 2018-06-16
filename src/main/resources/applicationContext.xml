@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- repositories -->
+    <bean name="hardDriveVehicleRepository"
+        class="pl.sdacademy.spring.car_dealer.repository.HardDriveVehicleRepository"/>
+    <bean name="hardDriveCustomerRepository"
+          class="pl.sdacademy.spring.car_dealer.repository.HardDriveCustomerRepository"/>
+    <bean name="hardDrivePurchaseRepository"
+          class="pl.sdacademy.spring.car_dealer.repository.HardDrivePurchaseRepository"/>
+
+    <!-- services -->
+    <bean name="defaultCarDataService"
+          class="pl.sdacademy.spring.car_dealer.service.DefaultCarDataService">
+        <constructor-arg index="0" ref="hardDriveVehicleRepository"/>
+    </bean>
+    <bean name="defaultSellingService"
+          class="pl.sdacademy.spring.car_dealer.service.DefaultSellingService">
+        <constructor-arg index="0" ref="hardDriveVehicleRepository"/>
+        <constructor-arg index="1" ref="hardDriveCustomerRepository"/>
+        <constructor-arg index="2" ref="hardDrivePurchaseRepository"/>
+    </bean>
+
+    <!-- controllers -->
+    <bean name="carDataController"
+          class="pl.sdacademy.spring.car_dealer.controller.CarDataController">
+        <constructor-arg index="0" ref="defaultCarDataService"/>
+    </bean>
+    <bean name="sellingController"
+          class="pl.sdacademy.spring.car_dealer.controller.SellingController">
+        <constructor-arg index="0" ref="defaultSellingService"/>
+    </bean>
+
+    <bean name="application"
+          class="pl.sdacademy.spring.car_dealer.Application">
+        <property name="carDataController" ref="carDataController"/>
+        <property name="sellingController" ref="sellingController"/>
+    </bean>
+</beans>

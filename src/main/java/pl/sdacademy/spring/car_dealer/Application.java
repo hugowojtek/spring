@@ -12,13 +12,16 @@ import java.util.Scanner;
 
 public class Application {
 
-    private final CustomerRepository customerRepository = new HardDriveCustomerRepository();
-    private final PurchaseRepository purchaseRepository = new HardDrivePurchaseRepository();
-    private final VehicleRepository vehicleRepository = new HardDriveVehicleRepository();
-    private final CarDataService carDataService = new DefaultCarDataService(vehicleRepository);
-    private final SellingService sellingService = new DefaultSellingService(vehicleRepository, customerRepository, purchaseRepository);
-    private final CarDataController carDataController = new CarDataController(carDataService);
-    private final SellingController sellingController = new SellingController(sellingService);
+    private CarDataController carDataController;
+    private SellingController sellingController;
+
+    public void setCarDataController(CarDataController carDataController) {
+        this.carDataController = carDataController;
+    }
+
+    public void setSellingController(SellingController sellingController) {
+        this.sellingController = sellingController;
+    }
 
     public void start() {
         Long choice = -1L;
