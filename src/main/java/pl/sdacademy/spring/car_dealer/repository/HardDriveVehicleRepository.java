@@ -7,7 +7,11 @@ import java.util.stream.Collectors;
 
 public class HardDriveVehicleRepository extends AbstractHardDriveRepository<Vehicle> implements VehicleRepository {
 
-    private final String repositoryLocation = "vehicles.ser";
+    private final String repositoryLocation;
+
+    public HardDriveVehicleRepository(String repositoryLocation) {
+        this.repositoryLocation = repositoryLocation;
+    }
 
     @Override
     public Vehicle byId(Long id) {

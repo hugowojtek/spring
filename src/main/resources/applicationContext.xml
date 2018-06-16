@@ -6,11 +6,17 @@
 
     <!-- repositories -->
     <bean name="hardDriveVehicleRepository"
-          class="pl.sdacademy.spring.car_dealer.repository.HardDriveVehicleRepository"/>
+          class="pl.sdacademy.spring.car_dealer.repository.HardDriveVehicleRepository">
+        <constructor-arg index="0" value="${repository.vehicle.hardDriveLocation}"/>
+    </bean>
     <bean name="hardDriveCustomerRepository"
-          class="pl.sdacademy.spring.car_dealer.repository.HardDriveCustomerRepository"/>
+          class="pl.sdacademy.spring.car_dealer.repository.HardDriveCustomerRepository">
+        <constructor-arg index="0" value="${repository.customer.hardDriveLocation}"/>
+    </bean>
     <bean name="hardDrivePurchaseRepository"
-          class="pl.sdacademy.spring.car_dealer.repository.HardDrivePurchaseRepository"/>
+          class="pl.sdacademy.spring.car_dealer.repository.HardDrivePurchaseRepository">
+        <constructor-arg index="0" value="${repository.purchase.hardDriveLocation}"/>
+    </bean>
 
     <!-- services -->
     <bean name="defaultCarDataService"
@@ -31,4 +37,9 @@
     <bean name="application"
           class="pl.sdacademy.spring.car_dealer.Application"
           autowire="byType"/>
+
+    <bean
+            class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="application.properties" />
+    </bean>
 </beans>
