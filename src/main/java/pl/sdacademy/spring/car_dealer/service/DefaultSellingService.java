@@ -9,6 +9,7 @@ import pl.sdacademy.spring.car_dealer.repository.PurchaseRepository;
 import pl.sdacademy.spring.car_dealer.repository.VehicleRepository;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class DefaultSellingService implements SellingService {
@@ -27,10 +28,12 @@ public class DefaultSellingService implements SellingService {
     }
 
     public Purchase sell(Long vehicleId, Customer customer, Long price) {
-        Vehicle vehicle = vehicleRepository.findOne(vehicleId);
-        if (vehicle == null) {
+        Optional<Vehicle> notSoldVehicle =
+                vehicleRepository.findNotSoldVehicle(vehicleId);
+        if (!notSoldVehicle.isPresent()) {
             return null;
         }
+        Vehicle vehicle = notSoldVehicle.get();
         vehicle.setSold(true);
         vehicleRepository.save(vehicle);
         customer = customerRepository.save(customer);
