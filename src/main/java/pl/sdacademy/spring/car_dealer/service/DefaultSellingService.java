@@ -1,6 +1,5 @@
 package pl.sdacademy.spring.car_dealer.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pl.sdacademy.spring.car_dealer.model.Customer;
 import pl.sdacademy.spring.car_dealer.model.Purchase;
@@ -20,7 +19,7 @@ public class DefaultSellingService implements SellingService {
 
     public DefaultSellingService(
             VehicleRepository vehicleRepository,
-            @Qualifier("hardDriveCustomerRepository") CustomerRepository customerRepository,
+            CustomerRepository customerRepository,
             PurchaseRepository purchaseRepository) {
         this.vehicleRepository = vehicleRepository;
         this.customerRepository = customerRepository;
@@ -34,7 +33,7 @@ public class DefaultSellingService implements SellingService {
         }
         vehicle.setSold(true);
         vehicleRepository.update(vehicle);
-        customer = customerRepository.add(customer);
+        customer = customerRepository.save(customer);
         Purchase purchase = new Purchase();
         purchase.setVehicle(vehicle);
         purchase.setCustomer(customer);
