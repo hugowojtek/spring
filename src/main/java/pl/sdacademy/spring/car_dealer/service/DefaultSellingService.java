@@ -36,8 +36,8 @@ public class DefaultSellingService implements SellingService {
         vehicleRepository.update(vehicle);
         customer = customerRepository.add(customer);
         Purchase purchase = new Purchase();
-        purchase.setVehicleId(vehicleId);
-        purchase.setCustomerId(customer.getId());
+        purchase.setVehicle(vehicle);
+        purchase.setCustomer(customer);
         purchase.setDate(new Date());
         purchase.setPrice(price);
         return purchaseRepository.add(purchase);

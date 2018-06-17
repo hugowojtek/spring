@@ -1,7 +1,9 @@
 package pl.sdacademy.spring.car_dealer.model;
 
+import javax.persistence.Entity;
 import java.io.Serializable;
 
+@Entity
 public class Customer extends BaseModel implements Serializable {
     private String name;
     private String surname;
