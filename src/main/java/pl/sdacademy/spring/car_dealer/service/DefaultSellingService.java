@@ -27,18 +27,18 @@ public class DefaultSellingService implements SellingService {
     }
 
     public Purchase sell(Long vehicleId, Customer customer, Long price) {
-        Vehicle vehicle = vehicleRepository.byId(vehicleId);
+        Vehicle vehicle = vehicleRepository.findOne(vehicleId);
         if (vehicle == null) {
             return null;
         }
         vehicle.setSold(true);
-        vehicleRepository.update(vehicle);
+        vehicleRepository.save(vehicle);
         customer = customerRepository.save(customer);
         Purchase purchase = new Purchase();
         purchase.setVehicle(vehicle);
         purchase.setCustomer(customer);
         purchase.setDate(new Date());
         purchase.setPrice(price);
-        return purchaseRepository.add(purchase);
+        return purchaseRepository.save(purchase);
     }
 }

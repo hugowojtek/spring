@@ -15,6 +15,11 @@ public class DefaultCarDataService implements CarDataService {
     }
 
     public List<Vehicle> loadCarsThatCanBeSold() {
-        return vehicleRepository.getAvailable();
+        return (List<Vehicle>) vehicleRepository.findAll();
+    }
+
+    @Override
+    public Vehicle addVehicle(Vehicle newVehicleToBeSaved) {
+        return vehicleRepository.save(newVehicleToBeSaved);
     }
 }

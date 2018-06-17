@@ -29,6 +29,9 @@ public class Application {
                     Long vehicleId = readInput();
                     sellingController.buyVehicle(vehicleId);
                     break;
+                case 3:
+                    carDataController.createCar();
+                    break;
                 case 9:
                     break;
                 default:
@@ -44,6 +47,7 @@ public class Application {
         System.out.println("Welcome in Car Dealer application! What you want to do?");
         System.out.println("1) Show Vehicles");
         System.out.println("2) Sell Vehicle");
+        System.out.println("3) Add Vehicle");
         System.out.println("9) Exit");
         System.out.print("What is your choice? ");
     }

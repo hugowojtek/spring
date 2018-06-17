@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CarDataService {
     List<Vehicle> loadCarsThatCanBeSold();
+    Vehicle addVehicle(Vehicle newVehicleToBeSaved);
 }

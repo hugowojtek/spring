@@ -6,6 +6,7 @@ import pl.sdacademy.spring.car_dealer.service.CarDataService;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Scanner;
 
 @Controller
 public class CarDataController {
@@ -29,6 +30,34 @@ public class CarDataController {
                     vehicle.getMileage(),
                     vehicle.getPrice()));
         });
+    }
+
+    public void createCar() {
+        Vehicle vehicle = new Vehicle();
+        System.out.println("Provide vehicle data:");
+        System.out.print("   Manufacturer: ");
+        vehicle.setManufacturer(readStringInput());
+        System.out.print("   Model: ");
+        vehicle.setModel(readStringInput());
+        System.out.print("   Production Year: ");
+        vehicle.setProductionYear(readLongInput());
+        System.out.print("   Mileage: ");
+        vehicle.setMileage(readLongInput());
+        System.out.print("   Fuel: ");
+        vehicle.setFuel(readStringInput());
+        System.out.print("   Price: ");
+        vehicle.setPrice(readLongInput());
+        vehicle.setSold(false);
+
+        carDataService.addVehicle(vehicle);
+    }
+
+    private String readStringInput() {
+        return new Scanner(System.in).nextLine();
+    }
+
+    private Long readLongInput() {
+        return Long.parseLong(new Scanner(System.in).nextLine());
     }
 
 }
