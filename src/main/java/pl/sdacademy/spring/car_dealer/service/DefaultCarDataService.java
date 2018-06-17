@@ -18,7 +18,7 @@ public class DefaultCarDataService implements CarDataService {
     }
 
     public List<Vehicle> loadCarsThatCanBeSold() {
-        return vehicleFinder.getAll();
+        return vehicleFinder.getAvailable();
     }
 
     @Override
