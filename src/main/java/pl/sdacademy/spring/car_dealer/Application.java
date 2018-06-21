@@ -1,9 +1,11 @@
 package pl.sdacademy.spring.car_dealer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import pl.sdacademy.spring.car_dealer.controller.CarDataController;
 import pl.sdacademy.spring.car_dealer.controller.SellingController;
+import pl.sdacademy.spring.car_dealer.repository.JdbcTemplateVehicleFinder;
 
 import java.util.Scanner;
 
@@ -32,6 +34,9 @@ public class Application {
                 case 3:
                     carDataController.createCar();
                     break;
+                case 4:
+                    JdbcTemplateVehicleFinder jdbcTemplateVehicleFinder = new JdbcTemplateVehicleFinder(new JdbcTemplate());
+                    jdbcTemplateVehicleFinder.getAll();
                 case 9:
                     break;
                 default:
@@ -48,6 +53,7 @@ public class Application {
         System.out.println("1) Show Vehicles");
         System.out.println("2) Sell Vehicle");
         System.out.println("3) Add Vehicle");
+        System.out.println("4) new option");
         System.out.println("9) Exit");
         System.out.print("What is your choice? ");
     }
