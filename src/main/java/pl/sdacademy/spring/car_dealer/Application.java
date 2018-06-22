@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import pl.sdacademy.spring.car_dealer.controller.CarDataController;
 import pl.sdacademy.spring.car_dealer.controller.SellingController;
 import pl.sdacademy.spring.car_dealer.repository.JdbcTemplateVehicleFinder;
+import pl.sdacademy.spring.car_dealer.repository.VehicleFinder;
 
 import java.util.Scanner;
 
@@ -16,6 +17,10 @@ public class Application {
     private CarDataController carDataController;
     @Autowired
     private SellingController sellingController;
+
+    @Autowired
+//    private JdbcTemplateVehicleFinder jdbcTemplateVehicleFinder
+    private VehicleFinder vehicleFinder;
 
     public void start() {
         Long choice = -1L;
@@ -35,8 +40,8 @@ public class Application {
                     carDataController.createCar();
                     break;
                 case 4:
-                    JdbcTemplateVehicleFinder jdbcTemplateVehicleFinder = new JdbcTemplateVehicleFinder(new JdbcTemplate());
-                    jdbcTemplateVehicleFinder.getAll();
+                    vehicleFinder = new JdbcTemplateVehicleFinder(new JdbcTemplate());
+                    vehicleFinder.getAll();
                 case 9:
                     break;
                 default:
